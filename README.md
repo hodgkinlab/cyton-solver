@@ -1,4 +1,4 @@
-##User guide
+## User guide
 Steps:
 
 1. Unzip CytonSolver v1.1.3b (choose one that appropriate for your OS) in 'release' folder
