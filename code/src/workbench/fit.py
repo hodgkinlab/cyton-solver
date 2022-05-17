@@ -289,9 +289,9 @@ def fit_to_cyton15(thread, algo_settings, fit_to_total_cells):
 				flatten_generation_list=x,
 				iter_cb=callback_print_function,
 				method='least_squares',
+				max_nfev=algo_settings[1],
 				fit_kws={
 					# 'maxfev': algo_settings[1],
-					'max_nfev': algo_settings[1],
 					'ftol': algo_settings[2],
 					'xtol': algo_settings[3],
 					'gtol': algo_settings[4],
@@ -308,8 +308,8 @@ def fit_to_cyton15(thread, algo_settings, fit_to_total_cells):
 				flatten_generation_list=x,
 				method='differential_evolution',
 				iter_cb=callback_print_function,
+				max_nfev=algo_settings[1],
 				fit_kws={
-					'max_nfev': algo_settings[1],
 					'popsize': algo_settings[2],
 					'tol': algo_settings[3],
 					'atol': algo_settings[4],
@@ -345,5 +345,8 @@ def fit_to_cyton15(thread, algo_settings, fit_to_total_cells):
 		print(' > Updating parameters & plots...')
 
 		# this will return last iteration of failed fit parameters
-		return model.last_param[-1]
+		if len(model.last_param) > 0:
+			return model.last_param[-1]
+		else:
+			return '--unknown--'
 
